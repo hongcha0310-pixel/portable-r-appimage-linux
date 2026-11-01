@@ -88,6 +88,11 @@ PREINSTALLED_PACKAGES=(
     "data.table"
     "plotly"
     "DT"
+    "meta"
+    "netmeta"
+    "writexl"
+    "gridExtra"
+    "magick"
 )
 
 # Colors for output
