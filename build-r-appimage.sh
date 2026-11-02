@@ -92,7 +92,6 @@ PREINSTALLED_PACKAGES=(
     "netmeta"
     "writexl"
     "gridExtra"
-    "magick"
 )
 
 # Colors for output
@@ -323,7 +322,6 @@ install_r_packages() {
     unset R_HOME R_LIBS_USER R_SHARE_DIR R_INCLUDE_DIR R_DOC_DIR R_LIBS R_ENVIRON R_PROFILE
     
     # Set up R environment pointing to our temporary installation
-    export R_HOME="${install_dir}/usr/lib/R"
     export R_LIBS_SITE="${lib_dir}"
     export R_LIBS="${lib_dir}"
     export R_SHARE_DIR="${install_dir}/usr/share/R/share"
@@ -385,7 +383,9 @@ install_package_safe <- function(pkg) {
     cat("Installing package:", pkg, "\n")
     tryCatch({
         if (!require(pkg, character.only = TRUE, quietly = TRUE)) {
-            install.packages(pkg, lib = "${lib_dir}", dependencies = TRUE, quiet = FALSE)
+          install.packages(pkg, lib = "${lib_dir}",
+                 dependencies = c("Depends", "Imports", "LinkingTo"),
+                 quiet = FALSE)
             if (require(pkg, character.only = TRUE, quietly = TRUE)) {
                 cat("[OK] Successfully installed:", pkg, "\n")
                 return(TRUE)
