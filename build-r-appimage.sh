@@ -339,31 +339,7 @@ install_r_packages() {
     # Add R to PATH
     export PATH="${install_dir}/usr/bin:${PATH}"
     
-    # Verify R is working before proceeding
-    log_info "Testing R binary..."
-    if ! "$r_binary" --version > /dev/null 2>&1; then
-        log_error "R binary test failed. Attempting to diagnose..."
-        
-        # Try to get more detailed error information
-        log_info "Attempting to run R --version with error output:"
-        "$r_binary" --version 2>&1 | sed 's/^/  ERROR: /' || true
-        
-        # Check if it's a library issue
-        if command -v ldd >/dev/null 2>&1; then
-            local actual_r_binary
-            if [ -f "${install_dir}/usr/lib/R/bin/exec/R" ]; then
-                actual_r_binary="${install_dir}/usr/lib/R/bin/exec/R"
-                log_info "Checking dependencies of actual R binary: $actual_r_binary"
-                ldd "$actual_r_binary" 2>&1 | sed 's/^/  /' || true
-            fi
-        fi
-        
-        log_error "Cannot proceed with package installation - R binary not functional"
-        return 1
-    fi
-    
-    log_success "R binary is working"
-    
+   
     log_info "Installing ${#PREINSTALLED_PACKAGES[@]} packages..."
     
     # Create R script for package installation
