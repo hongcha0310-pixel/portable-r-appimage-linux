@@ -259,7 +259,7 @@ analyse_outcome <- function(outcome, arms, direct_raw, high_rob_studies) {
 
 
 # Embedded analysis input data derived from the locked extraction workbook.
-strength_arms <- read.csv(textConnection(r"x(study,treatment,n,mean,sd,source
+strength_arms <- read.csv(textConnection(r"(study,treatment,n,mean,sd,source
 Calatayud 2020 / Cruz-Montecinos 2023,EX,10,12.72,7.143287437850708,"Calatayud 2020, Table 3"
 Calatayud 2020 / Cruz-Montecinos 2023,IC,10,-5.08,7.597606110512448,"Calatayud 2020, Table 3"
 Cuesta-Barriuso 2014a,MAN,11,-0.05,0.153,"Cuesta-Barriuso 2014, Table 3"
@@ -278,11 +278,11 @@ Runkel 2016 / Runkel 2017,IC,28,4.8,2,"Runkel 2016, Figure 2b"
 Tat 2021,MULTI,8,17.1,2.5925925925925926,"Tat 2021, Table 3"
 Tat 2021,EX,9,16.8,7.037037037037036,"Tat 2021, Table 3"
 Villalón-González 2025/2026,EX,16,484.63,197.93,"Villalón-González 2025/2026, Table 3"
-Villalón-González 2025/2026,IC,17,430.42,152.19,"Villalón-González 2025/2026, Table 3")x"), check.names=FALSE, stringsAsFactors=FALSE)
+Villalón-González 2025/2026,IC,17,430.42,152.19,"Villalón-González 2025/2026, Table 3")"), check.names=FALSE, stringsAsFactors=FALSE)
 
-strength_direct <- read.csv(textConnection(r"x(study,type,treat1,treat2,a,b,c,d,n1,n2,md,lower,upper,direction,source)x"), check.names=FALSE, stringsAsFactors=FALSE)
+strength_direct <- read.csv(textConnection(r"(study,type,treat1,treat2,a,b,c,d,n1,n2,md,lower,upper,direction,source)"), check.names=FALSE, stringsAsFactors=FALSE)
 
-pain_arms <- read.csv(textConnection(r"x(study,treatment,n,mean,sd,source
+pain_arms <- read.csv(textConnection(r"(study,treatment,n,mean,sd,source
 Cuesta-Barriuso 2014a,MAN,11,-1.1,1.818,"Cuesta-Barriuso 2014, Table 3"
 Cuesta-Barriuso 2014a,EX,10,-0.44699999999999995,0.831,"Cuesta-Barriuso 2014, Table 3"
 Cuesta-Barriuso 2014a,IC,10,-0.441,0.682,"Cuesta-Barriuso 2014, Table 3"
@@ -313,13 +313,13 @@ Tat 2026,IC,17,-3.8799999999999994,2.23,"Tat 2026, Tables 4–5"
 Ucero-Lozano 2024,IMV,24,-2.34,1.474578793421815,"Ucero-Lozano 2024, Table III"
 Ucero-Lozano 2024,IC,24,-3.43,1.6054585679858813,"Ucero-Lozano 2024, Table III"
 Ucero-Lozano 2025,IMV,14,-1.08,0.8757061434319141,"Ucero-Lozano 2025, Table 2"
-Ucero-Lozano 2025,IC,14,-1.85,0.8260206884854225,"Ucero-Lozano 2025, Table 2")x"), check.names=FALSE, stringsAsFactors=FALSE)
+Ucero-Lozano 2025,IC,14,-1.85,0.8260206884854225,"Ucero-Lozano 2025, Table 2")"), check.names=FALSE, stringsAsFactors=FALSE)
 
-pain_direct <- read.csv(textConnection(r"x(study,type,treat1,treat2,a,b,c,d,n1,n2,md,lower,upper,direction,source
+pain_direct <- read.csv(textConnection(r"(study,type,treat1,treat2,a,b,c,d,n1,n2,md,lower,upper,direction,source
 Calatayud 2020 / Cruz-Montecinos 2023,binary_or_to_smd,EX,IC,7,3,2,8,10,10,,,,higher_better,Calatayud 2020 clinically important pain improvement
-"Truque-Díaz 2025, crossover",md_ci_to_smd,MAN,IC,,,,,6,7,-0.85,-2.01,0.29,lower_better,Truque-Díaz 2025 crossover phase 1)x"), check.names=FALSE, stringsAsFactors=FALSE)
+"Truque-Díaz 2025, crossover",md_ci_to_smd,MAN,IC,,,,,6,7,-0.85,-2.01,0.29,lower_better,Truque-Díaz 2025 crossover phase 1)"), check.names=FALSE, stringsAsFactors=FALSE)
 
-hjhs_arms <- read.csv(textConnection(r"x(study,treatment,n,mean,sd,source
+hjhs_arms <- read.csv(textConnection(r"(study,treatment,n,mean,sd,source
 Calatayud 2020 / Cruz-Montecinos 2023,EX,10,2.89,4.13779468024229,"Calatayud 2020, Table 3"
 Calatayud 2020 / Cruz-Montecinos 2023,IC,10,-0.99,4.13779468024229,"Calatayud 2020, Table 3"
 Cuesta-Barriuso 2020 / Donoso-Úbeda 2020,MAN,33,-5.45,3.07,"Donoso-Úbeda 2020, Table 3"
@@ -343,10 +343,10 @@ Tat 2021,EX,9,0,2.222222222222222,"Tat 2021, Table 5"
 Tat 2026,MULTI,18,-8.17,9.48,"Tat 2026, Table 5"
 Tat 2026,IC,17,-14.41,11.3,"Tat 2026, Table 4"
 "Truque-Díaz 2025, pilot",MAN,11,-7,5.185185185185185,"Truque-Díaz 2025 pilot, Table 3"
-"Truque-Díaz 2025, pilot",IC,13,-7,3.333333333333333,"Truque-Díaz 2025 pilot, Table 3")x"), check.names=FALSE, stringsAsFactors=FALSE)
+"Truque-Díaz 2025, pilot",IC,13,-7,3.333333333333333,"Truque-Díaz 2025 pilot, Table 3")"), check.names=FALSE, stringsAsFactors=FALSE)
 
-hjhs_direct <- read.csv(textConnection(r"x(study,type,treat1,treat2,a,b,c,d,n1,n2,md,lower,upper,direction,source
-"Truque-Díaz 2025, crossover",md_ci_to_smd,MAN,IC,,,,,6,7,-2.39,-2.84,-1.94,lower_better,Truque-Díaz 2025 crossover phase 1)x"), check.names=FALSE, stringsAsFactors=FALSE)
+hjhs_direct <- read.csv(textConnection(r"(study,type,treat1,treat2,a,b,c,d,n1,n2,md,lower,upper,direction,source
+"Truque-Díaz 2025, crossover",md_ci_to_smd,MAN,IC,,,,,6,7,-2.39,-2.84,-1.94,lower_better,Truque-Díaz 2025 crossover phase 1)"), check.names=FALSE, stringsAsFactors=FALSE)
 
 
 high_rob <- c(
