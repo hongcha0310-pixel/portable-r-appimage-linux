@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'analysis/**'
+      - 'run_nma.R'
       - '.github/workflows/run-nma.yml'
   workflow_dispatch:
 
@@ -35,7 +35,7 @@ jobs:
             website
 
       - name: Run network meta-analysis
-        run: Rscript analysis/run_nma.R
+        run: Rscript run_nma.R
 
       - name: Upload R NMA results
         if: always()
